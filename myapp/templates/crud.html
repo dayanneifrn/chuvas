@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between ">
+                <h4 class="card-title">Gerenciamento de chuvas</h4>
+                <a href="{% url 'create' %}">
+                    <button type="button" class="btn btn-sm btn-success btn-rounded btn-fw">Adicionar registro</button>
+                </a>
+            </div>
+            {% if listatotal %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Volume</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg in listatotal %}
+                        <tr>
+                            <td>{{reg.data}}</td>
+                            <td>{{reg.volume}}</td>
+                            <td>
+                                <a href="{% url 'update' reg.id %}" class="btn btn-sm btn-inverse-info btn-icon"
+                                    role="button">
+                                    <i class="mdi mdi-lead-pencil"></i>
+                                </a>
+                                <a href="{% url 'delete' reg.id %}" class="btn btn-sm btn-inverse-danger btn-icon"
+                                    role="button">
+                                    <i class="mdi mdi-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <h6>Sem Registros</h6>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

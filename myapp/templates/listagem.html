@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Listagem de Chuvas</h4>
+      {% if listatotal %}
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reg in listatotal %}
+                  <tr>
+                      <td>{{reg.data}}</td>
+                      <td>{{reg.volume}}</td>
+                  </tr>
+              {% endfor %}
+          </tbody>  
+          </table>
+        </div>
+      {% else %}
+        <h6>Sem Registros</h6>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

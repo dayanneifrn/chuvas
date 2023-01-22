@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Consulta</h4>
+            <div class="form-group">
+                <form action="{% url 'consulta' %}" method="get">
+                    <div class="input-group">
+                        <input name="busca" type="text" class="form-control" placeholder="Pesquisar por data"
+                            aria-label="Pesquisar por data">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-primary" type="submit">Buscar Registro(s)</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% if mostrar %}
+                {% if resultados %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reg in resultados %}
+                            <tr>
+                                <td>{{reg.data}}</td>
+                                <td>{{reg.volume}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h6>Sem Registros</h6>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
